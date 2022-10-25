@@ -6,12 +6,12 @@ import java.time.format.DateTimeFormatter
 object Logger {
     private val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
     private fun internalOut(msg: String, type: String, vararg input: String) {
-        var msg = "(Synapser $type) -> $msg"
+        var s = "(Synapser $type) -> $msg"
         for (input_ in input) {
-            msg += input_ + " "
+            s += input_ + " "
         }
         val time = formatter.format(LocalDateTime.now()).toString()
-        println("[$time] $msg")
+        println("[$time] $s")
     }
     fun debug(msg: String, vararg input: String) {
         internalOut(msg, "Debug", *input)

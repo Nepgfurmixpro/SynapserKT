@@ -1,0 +1,6 @@
+# Project exclude paths
+/target/
+
+*.png
+server.properties
+eula.txt
