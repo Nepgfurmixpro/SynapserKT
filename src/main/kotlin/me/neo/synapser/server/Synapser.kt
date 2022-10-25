@@ -27,8 +27,13 @@ class Synapser(private val ip: String, private val port: Int) {
                     }
                 })
                 .childOption(ChannelOption.SO_KEEPALIVE, true)
+            val future = server.bind(ip, port)
+            Logger.log("Server has started.")
+            future.channel().closeFuture().sync()
         } finally {
-
+            Logger.event("Server Shutdown", "Stopping server.")
+            serverWorkerGroup.shutdownGracefully()
+            serverBossGroup.shutdownGracefully()
         }
     }
 }
